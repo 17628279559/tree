@@ -26,12 +26,15 @@ let svg;
 let status = ref("切换随机数据");
 
 const switch_use_fake = () => {
-  Axios.get(switchApi);
-  if (status.value == "切换随机数据") {
-    status.value = "切换真实数据"
-  } else {
-    status.value = "切换随机数据"
-  }
+  Axios.get(switchApi).then(response => {
+    console.log(response.data.data.use_fake);
+    if (response.data.data.use_fake) {
+      status.value = "切换真实数据";
+    } else {
+      status.value = "切换随机数据"
+    }
+  })
+
 }
 
 const scale = () => {
@@ -182,7 +185,7 @@ onMounted(() => {
     canvas.append('text')
       .text('赵文韬-2019302120066')
       .attr('font-size', `${1.5 * ratio}em`)
-      .attr('transform', `translate(${innerwidth / (1.1*ratio)},${innerheight + margin.bottom / 2})`)
+      .attr('transform', `translate(${innerwidth / (1.1 * ratio)},${innerheight + margin.bottom / 2})`)
       .attr('text-anchor', 'middle');
 
     // 添加日期 
@@ -213,7 +216,7 @@ onMounted(() => {
                  type="success"
                  plain>{{status}}</el-button>
     </el-row>
-    <svg class="center" 
+    <svg class="center"
          :width=width
          :height=height
          ref="svgRef">
@@ -226,13 +229,13 @@ onMounted(() => {
 #resizediv {
   padding: 0;
   border: 0;
-  margin: 0,auto;
+  margin: 0, auto;
 }
-#all{
-    width:100%;
-    height: 100%;
+#all {
+  width: 100%;
+  height: 100%;
 }
-.center{    
-    display: block;
+.center {
+  display: block;
 }
 </style>
