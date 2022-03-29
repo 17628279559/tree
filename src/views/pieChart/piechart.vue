@@ -26,43 +26,38 @@ let get_random_data = limit => {
 
 let data;
 
-const get_today_confirm = data => {
+const get_confirm = (data,field) => {
   let i = 0;
-  return data.map(item => {
-    return { index: i++, name: item['name'], value: item['today_confirm'] }
+  let tmpdata = data.map(item => {
+    return { index: 0, name: item['name'], value: item[field] }
   })
-}
-
-const get_total_confirm = data => {
-  let i = 0;
-  return data.map(item => {
-    return { index: i++, name: item['name'], value: item['total_confirm'] }
+  tmpdata.sort((a,b)=> b.value - a.value )
+  return tmpdata.map(item=>{ 
+      return { index: i++, name: item['name'], value: item['value'] }
   })
 }
 
 
 
 const pie1 = {
-  group_data: 1,
-  radius_inner: 0
+  group_data: 0,
+  radius_inner: 0,
+  useConstcolor: true
 }
 
 const pie2 = {
-  group_data: 1,
-  radius_inner: 150,
-  useConstcolor: true
+  group_data: 0.5,
+  radius_inner: 150
 }
 
 onMounted(() => {
   Axios.get(getdataApi).then(response => {
-    console.log(response.data);
     data = response.data;
-    pie(1, svgRef1, get_today_confirm(data), pie1);
-    pie(2, svgRef2, get_total_confirm(data), pie2);
+    pie(1, svgRef1, get_confirm(data,'today_confirm'), pie1);
+    pie(2, svgRef2, get_confirm(data,'total_confirm'), pie2);
     pie(3, svgRef3, get_random_data(34), pie1);
     pie(4, svgRef4, get_random_data(17), pie2);
-  })
-
+  });
 });
 
 

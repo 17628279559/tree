@@ -8,6 +8,8 @@
         target="_blank">文字树(p5.js)</a> |
     <a href="https://code.zwt666.top/histogram"
         target="_blank">动态更新的直方图(d3.js)</a> |
+    <a href="https://code.zwt666.top/piechart"
+        target="_blank">疫情饼图(d3.js)</a> |
     <a href="https://github.com/17628279559/tree"
         target="_blank">git仓库</a>
   </div>

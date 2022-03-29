@@ -9,6 +9,7 @@ import time
 import json
 import datetime
 import pymysql
+from config import config
 
 pymysql.install_as_MySQLdb()
 
@@ -16,11 +17,11 @@ pymysql.install_as_MySQLdb()
 
 # 数据库
 # 带选择数据库功能
-g_db_host = "39.105.159.127"  # 服务器
-g_db_user = "root"
-g_db_pw = "zwt360"
-g_db_name = "cloud_music"  # 数据库名
-g_db_port = 3306
+g_db_host = config.g_db_host  # 服务器
+g_db_user = config.g_db_user
+g_db_pw = config.g_db_pw
+g_db_name = config.g_db_name  # 数据库名
+g_db_port = config.g_db_port
 
 """
 功能：解决datatime字段输不出json格式错误
