@@ -64,7 +64,7 @@ export default {
       };
 
       p5.draw = () => {
-        p5.background(30, 30, 30);
+        p5.background(189, 193, 255);
         langle = lsilder.value();
         rangle = rsilder.value();
         len = len_slider.value();
@@ -81,23 +81,23 @@ export default {
         let words_len = words[i].length
         let textSize = 32 * Math.pow((maxLevel - level + 1) / maxLevel, 2)
         let strokeWeight = 10 * Math.pow((maxLevel - level + 1) / maxLevel, 2)
-        p5.rotate(PI/2)
+        p5.rotate(PI / 2)
         p5.strokeWeight(strokeWeight);
         p5.textSize(textSize);
         p5.noStroke();
-        r = 255 - len / 2;
-        p5.fill(r);
+        r = 255 - 4 * len;
+        p5.fill(150, r, 190);
         p5.text(words[i], 0, 0);
-        
-        p5.translate((words_len+0.5) * textSize, 0);
+
+        p5.translate((words_len + 0.5) * textSize, 0);
 
 
 
 
 
         if (len > 10) {
-          let r1 = rot * (1 + rrand() * rangle)-PI/2;
-          let r2 = -rot * (1 - rrand() * langle)-PI/2;
+          let r1 = rot * (1 + rrand() * rangle) - PI / 2;
+          let r2 = -rot * (1 - rrand() * langle) - PI / 2;
           p5.push();
           p5.rotate(r1);
           p5.branch(level + 1, len * 0.67);
